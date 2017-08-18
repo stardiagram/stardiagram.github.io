@@ -13,18 +13,32 @@
 	<h2>Выполнение кроссдоменного Ajax Запроса</h2>
 	<script>
 		$( document ).ready(function() {
-			$('#btn').click(function() {
-				request();
+			$('#btn-1').click(function() {
+				request('sign-description', null);
 			});
 			
-			function request() {
+			$('#btn-2').click(function() {
+				request('rows', {
+					sign: 11
+				});
+			});
+			
+			$('#btn-3').click(function() {
+				request('rows', {
+					year: {
+						from: 2015,
+						to: 2017
+					}
+				});
+			});
+			
+			
+			function request(urn, requestData) {
 				$.ajax({
-					url: "https://stardiagram.herokuapp.com/sign-description",
+					url: "https://stardiagram.herokuapp.com/" + urn,
 					crossDomain: true,
 					type: 'POST',
-					data: {
-						sign: 11
-					},
+					data: requestData,
 					dataType: 'json',
 					success: function(response) {
 						alert(response);
@@ -34,9 +48,12 @@
 					}
 				});
 			}
+			
 		});
 	</script>
 	
-	<button id="btn">Кнопка</button>
+	<button id="btn-1">Кнопка-1</button><br>
+	<button id="btn-2">Кнопка-2</button><br>
+	<button id="btn-3">Кнопка-3</button>
 </body>
 </html>
