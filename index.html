@@ -19,10 +19,12 @@
 			
 			function request() {
 				$.ajax({
-					url: "https://stardiagram.herokuapp.com/sign-description",
+					url: "https://stardiagram.herokuapp.com/rows",
 					crossDomain: true,
 					type: 'POST',
-					data: null,
+					data: {
+						sign: 11
+					},
 					dataType: 'json',
 					success: function(response) {
 						alert(response);
@@ -36,6 +38,5 @@
 	</script>
 	
 	<button id="btn">Кнопка</button>
-	
 </body>
 </html>
